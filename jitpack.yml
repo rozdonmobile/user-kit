@@ -1,0 +1,9 @@
+# JitPack builds the tagged commit on demand and serves the AAR at
+# https://jitpack.io/#rozdonmobile/user-kit — no registry account, no token.
+jdk:
+  - openjdk21
+before_install:
+  - yes | sdkmanager --licenses > /dev/null || true
+  - sdkmanager "platforms;android-37" "build-tools;37.0.0" > /dev/null
+install:
+  - ./gradlew publishToMavenLocal --no-daemon -Porg.gradle.configuration-cache=false
